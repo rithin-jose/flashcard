@@ -19,7 +19,8 @@ class QuizCard extends Component{
         correctAnswer:false,
         index:0,
         random:0,
-        count:0
+        count:0,
+        showAnswer:false
     }
     
     handleTrue = () => {
@@ -57,7 +58,8 @@ class QuizCard extends Component{
         this.setState({
             answered:false,
             correctAnswer:false,
-            index:(this.state.index +1)
+            index:(this.state.index +1),
+            showAnswer:false
         })
     }
 
@@ -68,6 +70,11 @@ class QuizCard extends Component{
             index:0,
             random:0,
             count:0
+        })
+    }
+    showAnswer = () =>{
+        this.setState({
+            showAnswer:true
         })
     }
 
@@ -105,12 +112,30 @@ class QuizCard extends Component{
                             </View>
                             :
                                 <View style={styles.buttonContainer}>
-                                    <TouchableHighlight style={styles.button} onPress={this.handleTrue}>
-                                        <Text style={styles.text}>True</Text>
-                                    </TouchableHighlight>
-                                    <TouchableHighlight style={styles.button2} onPress={this.handleFalse}>
-                                        <Text style={styles.text}>False</Text>
-                                    </TouchableHighlight>
+                                    {
+                                        this.state.showAnswer
+                                        ?
+                                        <View >
+                                            <Text style={styles.answer}>Answer</Text>
+                                            <Text >{this.props.deck.questions[this.state.index].answer}</Text>
+                                            <TouchableHighlight style={styles.button} onPress={this.handleNext}>
+                                                <Text style={styles.text}>next</Text>
+                                            </TouchableHighlight>
+                                        </View> 
+                                        :
+                                        <View>
+                                            <TouchableHighlight style={styles.button} onPress={this.handleTrue}>
+                                                <Text style={styles.text}>True</Text>
+                                            </TouchableHighlight>
+                                            <TouchableHighlight style={styles.button2} onPress={this.handleFalse}>
+                                                <Text style={styles.text}>False</Text>
+                                            </TouchableHighlight>
+                                            <TouchableHighlight style={styles.button3} onPress={this.showAnswer}>
+                                                <Text style={styles.text}>Show Answer</Text>
+                                            </TouchableHighlight>
+                                        </View>
+                                    }
+                                    
                                 </View>
                             }
                         </View>
@@ -164,6 +189,17 @@ const styles = StyleSheet.create({
         borderRadius:height/90,
         margin:height/40
     },
+    button3:{
+        backgroundColor:'#edf492',
+        padding:height/50,
+        borderRadius:height/90,
+        margin:height/40
+    },
+    answer:{
+        textAlign:'center',
+        fontWeight:'600',
+        marginTop: height/10
+    }
 })
 
 // function mapStateToProps({deck,DeckId}){
