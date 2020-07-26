@@ -21,5 +21,5 @@ In case metro bundle crashes or dosen't run use
 	react-native start
 
 
-Note: I generally don't use expo
+Note: expo is not used
 
