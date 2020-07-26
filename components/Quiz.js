@@ -8,11 +8,11 @@ const {height,width} = Dimensions.get('screen')
 class Quiz extends Component{
  
     render(){
-        console.log("test",this.props.DeckId);
+        console.log("yo",this.props.navigation);
         return(
             <View style={styles.container}>
                 <Text style={styles.heading}>{this.props.deck.title} Quiz</Text>
-                <QuizCard deck={this.props.deck} />
+                <QuizCard deck={this.props.deck} navigation={this.props.navigation} />
 
             </View>
         )

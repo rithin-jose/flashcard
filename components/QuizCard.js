@@ -18,7 +18,8 @@ class QuizCard extends Component{
         answered:false,
         correctAnswer:false,
         index:0,
-        random:0
+        random:0,
+        count:0
     }
     
     handleTrue = () => {
@@ -26,7 +27,8 @@ class QuizCard extends Component{
             ?
                 this.setState({
                     answered:true,
-                    correctAnswer: true
+                    correctAnswer: true,
+                    count:(this.state.count +1)
                 })
             :
                 this.setState({
@@ -45,7 +47,8 @@ class QuizCard extends Component{
             :
                 this.setState({
                     answered:true,
-                    correctAnswer: true
+                    correctAnswer: true,
+                    count:(this.state.count +1)
                 })
     }
 
@@ -58,6 +61,15 @@ class QuizCard extends Component{
         })
     }
 
+    reset =() => { 
+        this.setState({
+            answered:false,
+            correctAnswer:false,
+            index:0,
+            random:0,
+            count:0
+        })
+    }
 
 
     render(){
@@ -106,6 +118,13 @@ class QuizCard extends Component{
                         <View>
                             <Text>No More cards left</Text>
                             <Text>Hope you memorised everythin 😊</Text>
+                            <Text>No of correct answers = {this.state.count}</Text>
+                            <TouchableHighlight style={styles.button} onPress={this.reset}>
+                                        <Text style={styles.text}>Start Again</Text>
+                            </TouchableHighlight>
+                            <TouchableHighlight style={styles.button} onPress={() => this.props.navigation.goBack()}>
+                                        <Text style={styles.text}>Go Back</Text>
+                            </TouchableHighlight>
                         </View>
                 }
                 
