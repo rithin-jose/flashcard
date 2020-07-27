@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs'
-import { setLocalNotification } from './utils/Notification'
+// import { setLocalNotification } from './utils/Notification'
 
 const Tab = Platform.OS === 'ios' ? createBottomTabNavigator() : createMaterialTopTabNavigator()
 const Stack = createStackNavigator()
@@ -36,7 +36,7 @@ const store = createStore(Decks,middleware)
 
 export default class App extends Component{
   componentDidMount(){
-    setLocalNotification()
+    // setLocalNotification()
   }
   render(){
     return(

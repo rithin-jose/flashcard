@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import {View,Text,Dimensions,StyleSheet,TouchableHighlight} from 'react-native'
 import {connect} from 'react-redux'
+import {clearLocalNotification,setLocalNotification} from '../utils/Notification'
 
 const {height,width} = Dimensions.get('screen')
 
@@ -12,6 +13,8 @@ class QuizCard extends Component{
         this.setState({
             random:randomNumber
         })
+        clearLocalNotification()
+        .then(setLocalNotification)
     }
 
     state={
@@ -100,12 +103,39 @@ class QuizCard extends Component{
                                     <TouchableHighlight style={styles.button} onPress={this.handleNext}>
                                         <Text style={styles.text}>next</Text>
                                     </TouchableHighlight>
+                                    {
+                                        this.state.showAnswer
+                                        ?
+                                        <View>
+                                        <Text style={styles.answer}>Answer</Text>
+                                            <Text >{this.props.deck.questions[this.state.index].answer}</Text>
+                                        </View>
+                                        :
+                                        <View></View>
+                                    }
+
+                                    <TouchableHighlight style={styles.button3} onPress={this.showAnswer}>
+                                        <Text style={styles.text}>Show Answer</Text>
+                                    </TouchableHighlight>
                                     </View>
                                         :
                                         <View>
                                         <Text>No</Text>
                                         <TouchableHighlight style={styles.button} onPress={this.handleNext}>
                                             <Text style={styles.text}>next</Text>
+                                        </TouchableHighlight>
+                                        {
+                                        this.state.showAnswer
+                                        ?
+                                        <View>
+                                        <Text style={styles.answer}>Answer</Text>
+                                            <Text >{this.props.deck.questions[this.state.index].answer}</Text>
+                                        </View>
+                                        :
+                                        <View></View>
+                                    }
+                                        <TouchableHighlight style={styles.button3} onPress={this.showAnswer}>
+                                            <Text style={styles.text}>Show Answer</Text>
                                         </TouchableHighlight>
                                         </View> 
                                 }
