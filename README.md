@@ -22,5 +22,4 @@ In case metro bundle crashes or dosen't run use
 	react-native start
 
 
-Note: expo is not used
-
+Note: App was tested on Redmi note 7 pro (physical device)
